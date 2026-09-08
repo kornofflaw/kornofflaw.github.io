@@ -1,4 +1,0 @@
-:HL["/_next/static/chunks/03e1jeu8qfjec.css","style"]
-:HL["/_next/static/media/38df7484fe560b25-s.p.34k3f59fehpay.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
-:HL["/_next/static/media/47df9ba1c7236d3b-s.p.137759vg1sbmi.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
-0:{"tree":{"name":"","param":null,"prefetchHints":4112,"slots":{"children":{"name":"about","param":null,"prefetchHints":4160,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":4256,"slots":null}}}}},"staleTime":300,"buildId":"kornoff-pages"}
