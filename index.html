@@ -89,4 +89,55 @@
     }).observe(document.body, { childList: true, subtree: true });
   }
 })();
+</script><script>
+(function () {
+  function applyFix() {
+    if (document.querySelector('[data-kornoff-hero-video]')) return;
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var img = document.querySelector('img[src="/hero-ambient.jpg"]');
+    if (!img) return;
+    var video = document.createElement('video');
+    video.setAttribute('data-kornoff-hero-video', '1');
+    video.muted = true;
+    video.defaultMuted = true;
+    video.autoplay = true;
+    video.loop = true;
+    video.playsInline = true;
+    video.setAttribute('poster', '/hero-ambient.jpg');
+    video.setAttribute('aria-hidden', 'true');
+    video.className = img.className;
+    var source = document.createElement('source');
+    source.src = '/hero-ambient.mp4';
+    source.type = 'video/mp4';
+    video.appendChild(source);
+    img.insertAdjacentElement('afterend', video);
+    img.style.display = 'none';
+    var playPromise = video.play();
+    if (playPromise && playPromise.catch) {
+      playPromise.catch(function () {
+        video.style.display = 'none';
+        img.style.display = '';
+      });
+    }
+  }
+
+  function schedule() {
+    setTimeout(applyFix, 60);
+  }
+
+  if (document.readyState === 'complete') {
+    schedule();
+  } else {
+    window.addEventListener('load', schedule);
+  }
+
+  if (window.MutationObserver) {
+    new MutationObserver(function () {
+      var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (!reduced && !document.querySelector('[data-kornoff-hero-video]')) {
+        applyFix();
+      }
+    }).observe(document.body, { childList: true, subtree: true });
+  }
+})();
 </script></body></html>
